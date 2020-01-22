@@ -35,9 +35,13 @@
         ps[i].innerHTML = ps[i].innerHTML.replace(/retard/ig, '******');
         ps[i].innerHTML = ps[i].innerHTML.replace(/cripple/ig, '*******');
         ps[i].innerHTML = ps[i].innerHTML.replace(/#FFFFFF/g, '#000000');
+        ps[i].innerHTML = ps[i].innerHTML.replace(/autis/g, '*****');
     }
 
+    /* Enum of missing pages */
+    var missingPages = [3088];
 
+    /* Hotkeys */
     document.onkeyup = (e) => {
         if (e.key === 'Meta' || e.key === 'Control') {
             document.getElementsByClassName('o_chat-log-btn')[0].click();
@@ -46,11 +50,17 @@
             window.top.location.href = 'https://www.homestuck.com/map/story#'+pageNum;
         } else if (e.key === 'ArrowRight') {
             var pageNumInc = +window.top.location.href.split('/')[4] + 1;
+            if (missingPages.includes(pageNumInc)){
+                pageNumInc = pageNumInc+1;
+            }
             if (pageNumInc < 8130){
                 window.top.location.href = 'https://www.homestuck.com/story/'+pageNumInc;
             }
         } else if (e.key === 'ArrowLeft') {
             var pageNumDec = +window.top.location.href.split('/')[4] - 1;
+            if (missingPages.includes(pageNumDec)){
+                pageNumDec = pageNumDec-1;
+            }
             if (pageNumDec > 0){
                 window.top.location.href = 'https://www.homestuck.com/story/'+pageNumDec;
             }
